@@ -10,6 +10,10 @@ module.exports = (next) ->
 
   @config.session.options.store = new RedisStore @config.session.redis
 
+  process.on "a-http-server:shutdown:dettach", () ->
+
+    process.emit "a-http-server:shutdown:dettached", "session"
+
   middleware = session @config.session.options
 
   @app.use (req, res, done) =>
@@ -29,5 +33,7 @@ module.exports = (next) ->
       middleware req, res, lookup
 
     lookup()
+
+  process.emit "a-http-server:shutdown:attach", "session"
 
   next null
