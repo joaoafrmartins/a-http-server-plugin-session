@@ -1,0 +1,27 @@
+{
+  "name": "a-http-server-plugin-session",
+  "version": "0.0.0",
+  "main": "lib",
+  "description": "A Http Server Plugin Session",
+  "keywords": [
+    "a",
+    "http",
+    "server",
+    "plugin",
+    "session"
+  ],
+  "dependencies": {
+    "lodash.merge": "",
+    "express-session": "",
+    "connect-redis": ""
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/joaoafrmartins/a-http-server-plugin-session",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaoafrmartins/a-http-server-plugin-session.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joaoafrmartins/a-http-server-plugin-session/issues"
+  }
+}
