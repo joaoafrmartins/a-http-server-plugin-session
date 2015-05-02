@@ -6,11 +6,7 @@ configFn = require 'a-http-server-config-fn'
 
 module.exports = (next) ->
 
-  configFn @config,
-
-    alias: "session"
-
-    file: "#{__dirname}/config"
+  configFn @config, "#{__dirname}/config"
 
   @config.plugins.session.options.store = new RedisStore(
 
