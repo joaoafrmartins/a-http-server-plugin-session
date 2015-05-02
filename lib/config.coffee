@@ -1,8 +1,8 @@
 module.exports =
   'retries': 3
   'redis':
+    'port': 0
     'host': 'localhost'
-    'port': 6379
   'options':
     'name': 'jsessionid'
     'secret': 'session secret'

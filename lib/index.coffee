@@ -1,12 +1,16 @@
-merge = require 'lodash.merge'
-
 session = require 'express-session'
 
 RedisStore = require('connect-redis')(session)
 
+configFn = require 'a-http-server-config-fn'
+
 module.exports = (next) ->
 
-  @config.session = merge require('./config'), @config?.session or {}
+  configFn @config,
+
+    alias: "session"
+
+    file: "#{__dirname}/config"
 
   @config.session.options.store = new RedisStore @config.session.redis
 
