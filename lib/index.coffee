@@ -12,17 +12,21 @@ module.exports = (next) ->
 
     file: "#{__dirname}/config"
 
-  @config.session.options.store = new RedisStore @config.session.redis
+  @config.plugins.session.options.store = new RedisStore(
+
+    @config.plugins.session.redis
+
+  )
 
   process.on "a-http-server:shutdown:dettach", () ->
 
     process.emit "a-http-server:shutdown:dettached", "session"
 
-  middleware = session @config.session.options
+  middleware = session @config.plugins.session.options
 
   @app.use (req, res, done) =>
 
-    retries = @config.session.retries or 3
+    retries = @config.plugins.session.retries or 3
 
     lookup = (err) =>
 
