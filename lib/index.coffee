@@ -8,7 +8,9 @@ module.exports = (next) ->
 
   configFn @config, "#{__dirname}/config"
 
-  @config.plugins.session.options.store = new RedisStore(
+  options = @config.plugins.session.options
+
+  options.store = new RedisStore(
 
     @config.plugins.session.redis
 
@@ -18,7 +20,11 @@ module.exports = (next) ->
 
     process.emit "a-http-server:shutdown:dettached", "session"
 
-  middleware = session @config.plugins.session.options
+  options.secret = @config.middleware.cookies.secret
+
+  options.cookie = @config.middleware.cookies.options
+
+  middleware = session options
 
   @app.use (req, res, done) =>
 
